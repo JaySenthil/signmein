@@ -25,7 +25,7 @@ SECRET_KEY = 'xs-cl2+p2xqnmco7+so4#=b=!h6=ogq$-6c7zl74mocq(tw_p1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0']
+ALLOWED_HOSTS = ['0.0.0.0', 'djtestproto.herokuapp.com']
 
 
 # Application definition
