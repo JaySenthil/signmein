@@ -1,0 +1,30 @@
+{% extends 'org-base.html' %}
+
+{% block content %}
+<h2>Dashboard</h2>
+{% if user.is_authenticated %}
+  Hi {{ user.username }}!
+  <h3>Create a new meeting</h3>
+  <form method="POST" class="post-form">{% csrf_token %}
+        {{ form.as_p }}
+        {% if meetingExists %}
+          <button type="submit" class="save btn btn-default" name="newmeet-form" disabled>New meeting</button>
+        {% else %}
+          <button type="submit" class="save btn btn-default" name="newmeet-form">New meeting</button>
+        {% endif %}
+  </form>
+  <form method="POST">{% csrf_token %}
+        {{form_del.as_p}}
+        {% if meetingExists %}
+          <button type="submit" name="delmeet-form">Stop meeting</button>
+        {% else %}
+          <button type="submit" name="delmeet-form" disabled>Stop meeting</button>
+        {% endif %}
+  </form>
+  <p>{{status}}</p>
+  <p><a href="{% url 'logout' %}">Log Out</a></p>
+{% else %}
+  <p>You are not logged in</p>
+  <a href="{% url 'login' %}">Log In</a>
+{% endif %}
+{% endblock content %}

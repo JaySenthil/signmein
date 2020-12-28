@@ -1,0 +1,9 @@
+<!-- pages/templates/base.html -->
+<header>
+
+  <a href="{% url 'home' %}">Home</a> | <a href="{% url 'about' %}">About</a>
+
+</header>
+
+{% block content %}
+{% endblock content %}
