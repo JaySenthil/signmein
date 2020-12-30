@@ -22,6 +22,11 @@
         {% endif %}
   </form>
   <p>{{status}}</p>
+  <ul>
+    {% for member in memberList %}
+        <li>{{member.name}}</li>
+    {% endfor %}
+  </ul>
   <p><a href="{% url 'logout' %}">Log Out</a></p>
 {% else %}
   <p>You are not logged in</p>

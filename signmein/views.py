@@ -61,9 +61,13 @@ def DashboardPageView(request):
     if meetobj:
         status = 'Meeting is ongoing!'
         meetingExists = True
+        # Get list of members for this meeting
+        memberList = Members.objects.filter(meetRef = meetobj[0])
     else:
         status = 'No meeting is being held currently.'
         meetingExists = False
+        # set memberlist to empty array
+        memberList = []
     # create form logic
     if request.method == "POST" and 'newmeet-form' in request.POST:
         form = MeetingCreationForm(request.POST)
@@ -82,4 +86,4 @@ def DashboardPageView(request):
             return redirect('dash')
     else:
         form_del = MeetingDeletionForm()
-    return render(request, 'dash.html', {'form': form, 'form_del': form_del, 'status': status, 'meetingExists': meetingExists})
+    return render(request, 'dash.html', {'form': form, 'form_del': form_del, 'status': status, 'meetingExists': meetingExists, 'memberList': memberList})
